@@ -1,0 +1,20 @@
+# 1. STOP SEDO REDIRECTS: Overrides the global error pages 
+#    and points them back to your application's entry point.
+ErrorDocument 404 /index.html
+ErrorDocument 503 /index.html
+ErrorDocument 500 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 401 /index.html
+
+# 2. CLIENT-SIDE ROUTING: Rewrites all non-existent paths to index.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Skip files and directories that actually exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Rewrite all other requests (like /local) to index.html
+  RewriteRule . /index.html [L]
+</IfModule>
