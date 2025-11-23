@@ -1,4 +1,5 @@
 <script>
-  var redirect = '/' + location.pathname;
+  // Remove the repo prefix from the path
+  var redirect = location.pathname.replace('/my-ohif-viewer', '');
   window.location.replace('/my-ohif-viewer/index.html#' + redirect);
 </script>
